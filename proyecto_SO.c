@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 
 
 unsigned short int verificar_salir(char comando[]){
@@ -14,7 +13,6 @@ void capturar_comando(){
     char x, linea[100];
     int i;
     i=0;
-    printf("%s se han leido %d caracteres\n", linea, i);
     while(1){
         x=getc(stdin);
         if(x==EOF) {
@@ -24,7 +22,7 @@ void capturar_comando(){
             if(i == 5 && verificar_salir(linea)==5){
                 puts("Hasta luego amigo..."); break;
             } 
-            printf("%s se han leido %d caracteres\n", linea, i);
+            printf("%s se han leido %hi caracteres\n", linea, verificar_salir(linea));
         }
         linea[i]=x;
         i++;
