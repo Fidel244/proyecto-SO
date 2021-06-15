@@ -3,9 +3,9 @@
 #include<string.h>
 
 
-short int verificar_salir(char comando[]){
+unsigned short int verificar_salir(char comando[]){
     char string_salir[] = "salir";
-    short int i;
+    unsigned short int i;
     for(i=0; comando[i]==string_salir[i]; i++){}
     return i;
 }
@@ -14,6 +14,7 @@ void capturar_comando(){
     char x, linea[100];
     int i;
     i=0;
+    printf("%s se han leido %d caracteres\n", linea, i);
     while(1){
         x=getc(stdin);
         if(x==EOF) {
