@@ -23,14 +23,15 @@ void capturar_comando(){
     i=0;
 
     if (signal(SIGINT, &salir) == SIG_ERR) return;
-    
+    printf(">");
     while(1){
         x=getc(stdin);
         if(x=='\n'){
             if(i == verificar_salir(linea)){
-                puts("Hasta luego amigo..."); break;
+                puts("Hasta luego amigo..."); exit(0);
             } 
             printf("%s se han leido %hi caracteres\n", linea, i); i = 0;
+            printf(">");
         }else {
         linea[i]=x;
         i++;}
