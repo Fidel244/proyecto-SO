@@ -1,5 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <signal.h>
+
+
+void salir(){
+    puts("Hasta luego amigo...");
+    exit(0);
+}
 
 
 unsigned short int verificar_salir(char comando[]){
@@ -14,16 +21,16 @@ void capturar_comando(){
     char x, linea[100];
     int i;
     i=0;
+
+    if (signal(SIGINT, &salir) == SIG_ERR) return;
+    
     while(1){
         x=getc(stdin);
-        if(x==EOF) {
-            puts("Hasta luego amigo...");
-            break;
-        }else if(x=='\n'){
+        if(x=='\n'){
             if(i == verificar_salir(linea)){
                 puts("Hasta luego amigo..."); break;
             } 
-            printf("%s se han leido %hi caracteres\n", linea, i);
+            printf("%s se han leido %hi caracteres\n", linea, i); i = 0;
         }else {
         linea[i]=x;
         i++;}
@@ -31,7 +38,7 @@ void capturar_comando(){
 }
 
 
-int main(){
+int main(void){
     capturar_comando();
     return 0;
 }
